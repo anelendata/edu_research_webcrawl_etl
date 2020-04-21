@@ -1,0 +1,176 @@
+{
+  "streams": [
+    {
+      "stream": "school",
+      "tap_stream_id": "school",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "nces_school_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "state_school_id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "nces_district_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "state_district_id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "low_grade_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "high_grade_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "school_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "district": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "county_name_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "street_address": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "city": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "state": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "zip": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "zip_4_digit": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "phone": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "locale_code_": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "locale_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "charter": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "magnet_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "title_i_school_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "title_1_school_wide_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "students_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "teachers_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "student_teacher_ratio-": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "free_lunch_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "reduced_lunch_": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "_etl_tstamp": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          }
+        },
+        "selected": true
+      }
+    }
+  ]
+}
