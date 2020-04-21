@@ -10,7 +10,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 echo '{'
 echo '  "tap_command": "'`ls |grep tap`'",'
-echo '  "tap_args": "'"rest_api_spec/default.json --config .env/tap_config.json --schema_dir ./schema --catalog ./catalog/default.json --start_datetime '{start_at}' --end_datetime '{end_at}'"'",'
+echo '  "tap_args": "'"--config .env/tap_config.json --schema_dir ./schema --catalog ./catalog/default.json --start_datetime '{start_at}' --end_datetime '{end_at}'"'",'
 echo '  "target_command": "'`ls |grep target`'",'
 echo '  "target_args": "--config .env/target_config.json",'
 echo '  "tap_config": "'`${DIR}/escapejson ${CONFIG_DIR}/tap_config.json`'",'

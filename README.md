@@ -165,11 +165,8 @@ python runner.py default -d '{"venv":"./venv"}'
 in the same manner.
 
 ```
-python runner.py show_commands -d '{"view": "<view_name>"}'
+python runner.py show_commands -d '{"venv": "./venv"}'
 ```
-
-In the above example, the show_commands function expects a JSON string as a parameter that contains
-view.
 
 ## Execute in a Docker container
 

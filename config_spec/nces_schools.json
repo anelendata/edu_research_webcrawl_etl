@@ -1,0 +1,9 @@
+{
+  "args": {
+    "state_id": {
+      "type": "string",
+      "required": true,
+      "helper": "NCES State ID"
+    }
+  }
+}

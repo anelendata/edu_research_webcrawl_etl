@@ -77,6 +77,59 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 # Or do this?
 # RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
+########
+# Additional installs
+RUN apt-get update -yqq \
+    && apt-get install -yqq --no-install-recommends \
+            libxi6 \
+            libgconf-2-4 \
+            gnupg2 \
+            xvfb \
+            unzip \
+            vim
+
+########
+# Install Chromedriver
+
+# Set up the Chrome PPA
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+
+# Update the package list and install chrome
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list && \
+    apt-get update -y && \
+    apt-get install -y \
+        google-chrome-stable \
+        chromium-browser
+
+# Set up Chromedriver Environment variables
+ENV CHROMEDRIVER_DIR /selenium_driver
+RUN mkdir -p $CHROMEDRIVER_DIR
+
+# Download and install Chromedriver
+RUN CHROMEVER=$(google-chrome --product-version | grep -o "[^\.]*\.[^\.]*\.[^\.]*") && \
+    DRIVERVER=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROMEVER") && \
+    wget -q --continue -P $CHROMEDRIVER_DIR "http://chromedriver.storage.googleapis.com/$DRIVERVER/chromedriver_linux64.zip" && \
+    unzip $CHROMEDRIVER_DIR/chromedriver* -d $CHROMEDRIVER_DIR
+
+# Put Chromedriver into the PATH
+ENV PATH $CHROMEDRIVER_DIR:$PATH
+
+RUN chmod a+x $CHROMEDRIVER_DIR/chromedriver
+
+########
+# Firefox
+
+RUN apt-get update -y && \
+    apt-get install -y \
+        firefox
+RUN wget -q --continue -P $CHROMEDRIVER_DIR "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz" && \
+    tar xvfz $CHROMEDRIVER_DIR/geckodriver* -C $CHROMEDRIVER_DIR
+
+RUN chmod a+x $CHROMEDRIVER_DIR/geckodriver
+
+
 COPY . /app
 
 RUN rm -fr /app/.env

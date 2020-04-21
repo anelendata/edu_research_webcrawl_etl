@@ -7,13 +7,10 @@ import etl_utils as etl
 logger = logging.getLogger(__name__)
 
 
-def _get_params(start_at=None, end_at=None):
+def _get_params(args=None):
     params = etl.get_python_info(__name__)
-    if start_at:
-        params.update({"start_at": start_at})
-    if end_at:
-        params.update({"end_at": end_at})
-
+    if args:
+        params.update(args)
     return params
 
 
@@ -27,7 +24,7 @@ def _get_env():
     return env
 
 
-def _get_command_string(command, argstring, params, venv=None):
+def _get_command_string(command, argstring, params):
     """
     Available params:
     - python
@@ -37,23 +34,23 @@ def _get_command_string(command, argstring, params, venv=None):
     command = command + " " + argstring
     command = command.format(**params)
 
-    if venv:
-        params.update({"venv": venv})
+    if params.get("venv"):
         command = '/bin/bash -c "source {code_dir}/{venv}/bin/activate && '.format(**params) + command + '"'
 
     return command
 
 
-def _get_singer_commands(start_at=None, end_at=None, venv=None):
-    params = _get_params(start_at, end_at)
+def _get_singer_commands(args):
+    params = _get_params(args)
     env = _get_env()
+
     tap_command = os.environ.get("tap_command")
     tap_args = os.environ.get("tap_args")
     target_command = os.environ.get("target_command")
     target_args = os.environ.get("target_args")
 
-    tap_bash_command = _get_command_string(tap_command, tap_args, params, venv)
-    target_bash_command = _get_command_string(target_command, target_args, params, venv)
+    tap_bash_command = _get_command_string(tap_command, tap_args, params)
+    target_bash_command = _get_command_string(target_command, target_args, params)
 
     return tap_bash_command, target_bash_command
 
@@ -133,12 +130,10 @@ def show_commands(data):
     Show singer.io tap and target commands
     """
     _write_config()
-    env = _get_env()
-    venv = data.get("venv")
-
     start_at, end_at = _get_time_window(data)
+    data.update({"start_at": start_at, "end_at": end_at})
+    tap_command, target_command = _get_singer_commands(data)
 
-    tap_command, target_command = _get_singer_commands(start_at, end_at, venv)
     print(tap_command)
     print(target_command)
 

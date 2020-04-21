@@ -1,8 +1,8 @@
 {
   "streams": [
     {
-      "stream": "school",
-      "tap_stream_id": "school",
+      "stream": "nces_schools",
+      "tap_stream_id": "nces_schools",
       "schema": {
         "type": "object",
         "properties": {
