@@ -129,6 +129,13 @@ RUN wget -q --continue -P $CHROMEDRIVER_DIR "https://github.com/mozilla/geckodri
 
 RUN chmod a+x $CHROMEDRIVER_DIR/geckodriver
 
+# Actually, copy everything under $CHROMEDRIVER to /usr/bin because $PATH is not
+# honored with python subprocess with shell=True that is required for Docker
+# to run subprocess...
+RUN cp -r $CHROMEDRIVER_DIR/* /usr/bin
+
+########
+# app installation
 
 COPY . /app
 
@@ -143,6 +150,7 @@ RUN pip3 install --no-cache-dir -e ./tap_webcrawl/json_schema_gen
 RUN pip3 install --no-cache-dir -e ./tap_webcrawl
 RUN pip3 install --no-cache-dir -e ./target-bigquery
 RUN pip3 install -r requirements.txt
+
 RUN chmod a+x /usr/local/bin/*
 
 ENTRYPOINT [ "/tini", "--" ]

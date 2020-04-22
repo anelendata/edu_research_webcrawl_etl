@@ -104,7 +104,8 @@ def run_etl(data):
     _write_catalog()
 
     start_at, end_at = _get_time_window(data)
-    tap_command, target_command = _get_singer_commands(start_at, end_at, venv)
+    data.update({"start_at": start_at, "end_at": end_at})
+    tap_command, target_command = _get_singer_commands(data)
 
     # In Docker container, it takes shell=True to run a subprocess without causing Permission error (13)
     # and to run with shell=True, we need to feed the entire cmd string with args without splitting.
