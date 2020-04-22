@@ -9,7 +9,7 @@
           "nces_school_id": {
             "type": [
               "null",
-              "integer"
+              "string"
             ]
           },
           "state_school_id": {
@@ -21,7 +21,7 @@
           "nces_district_id": {
             "type": [
               "null",
-              "integer"
+              "string"
             ]
           },
           "state_district_id": {
@@ -144,7 +144,7 @@
               "string"
             ]
           },
-          "student_teacher_ratio-": {
+          "student_teacher_ratio_": {
             "type": [
               "null",
               "string"

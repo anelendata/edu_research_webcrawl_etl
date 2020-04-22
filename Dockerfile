@@ -139,7 +139,11 @@ RUN cp -r $CHROMEDRIVER_DIR/* /usr/bin
 
 COPY . /app
 
+# .dockerignore should take care of this but just in case
 RUN rm -fr /app/.env
+
+# We also ignore data to avoid storing unnecesary data files created run-time
+RUN mkdir -p /app/data
 
 RUN chmod 777 -R /app
 
