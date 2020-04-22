@@ -76,7 +76,7 @@
     "zip": {
       "type": [
         "null",
-        "integer"
+        "string"
       ]
     },
     "zip_4_digit": {

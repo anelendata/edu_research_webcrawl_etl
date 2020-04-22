@@ -30,13 +30,13 @@
               "string"
             ]
           },
-          "low_grade_": {
+          "low_grade": {
             "type": [
               "null",
               "string"
             ]
           },
-          "high_grade_": {
+          "high_grade": {
             "type": [
               "null",
               "string"
@@ -54,7 +54,7 @@
               "string"
             ]
           },
-          "county_name_": {
+          "county_name": {
             "type": [
               "null",
               "string"
@@ -81,7 +81,7 @@
           "zip": {
             "type": [
               "null",
-              "integer"
+              "string"
             ]
           },
           "zip_4_digit": {
@@ -96,13 +96,13 @@
               "string"
             ]
           },
-          "locale_code_": {
+          "locale_code": {
             "type": [
               "null",
               "integer"
             ]
           },
-          "locale_": {
+          "locale": {
             "type": [
               "null",
               "string"
@@ -114,49 +114,49 @@
               "string"
             ]
           },
-          "magnet_": {
+          "magnet": {
             "type": [
               "null",
               "string"
             ]
           },
-          "title_i_school_": {
+          "title_i_school": {
             "type": [
               "null",
               "string"
             ]
           },
-          "title_1_school_wide_": {
+          "title_1_school_wide": {
             "type": [
               "null",
               "string"
             ]
           },
-          "students_": {
+          "students": {
             "type": [
               "null",
               "string"
             ]
           },
-          "teachers_": {
+          "teachers": {
             "type": [
               "null",
               "string"
             ]
           },
-          "student_teacher_ratio_": {
+          "student_teacher_ratio": {
             "type": [
               "null",
               "string"
             ]
           },
-          "free_lunch_": {
+          "free_lunch": {
             "type": [
               "null",
               "string"
             ]
           },
-          "reduced_lunch_": {
+          "reduced_lunch": {
             "type": [
               "null",
               "string"
