@@ -4,7 +4,7 @@
     "nces_school_id": {
       "type": [
         "null",
-        "string"
+        "integer"
       ]
     },
     "state_school_id": {
@@ -16,7 +16,7 @@
     "nces_district_id": {
       "type": [
         "null",
-        "string"
+        "integer"
       ]
     },
     "state_district_id": {
@@ -94,7 +94,7 @@
     "locale_code_": {
       "type": [
         "null",
-        "integer"
+        "string"
       ]
     },
     "locale_": {

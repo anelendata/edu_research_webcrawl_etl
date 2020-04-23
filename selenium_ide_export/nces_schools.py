@@ -2,6 +2,8 @@
 import pytest
 import time
 import json
+import logging
+import sys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
@@ -10,7 +12,35 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+
+logging.basicConfig(stream=sys.stdout,
+                    format="%(asctime)s - " + str(__name__) + " - %(name)s - %(levelname)s - %(message)s",
+                    level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+TIMEOUT = 300
+INTERVAL = 5
+
 class TestDefaultSuite():
+  def with_retry(self, func, args=[], interval=INTERVAL, timeout=TIMEOUT):
+    elapsed_time = 0
+    ret = None
+    while elapsed_time < timeout:
+        try:
+            ret = func(args[0], args[1])
+        except Exception as e:
+            selenium_exception = e
+            logger.warn("I will retry in %d seconds %s" % (interval, str(e)))
+            elapsed_time = elapsed_time + interval
+            time.sleep(interval)
+        else:
+            break
+
+    if elapsed_time >= timeout:
+        raise selenium_exception
+
+    return ret
+
   def setup_method(self, method):
     self.driver = webdriver.Firefox()
     self.vars = {}
@@ -30,8 +60,11 @@ class TestDefaultSuite():
     self.driver.get(url)
     self.driver.set_window_size(1680, 961)
     self.vars["window_handles"] = self.driver.window_handles
-    self.driver.find_element(By.CSS_SELECTOR, ".excelclass").click()
+
+    self.with_retry(self.driver.find_element, [By.CSS_SELECTOR, ".excelclass"]).click()
+
     self.vars["win9317"] = self.wait_for_window(2000)
     self.vars["root"] = self.driver.current_window_handle
     self.driver.switch_to.window(self.vars["win9317"])
-    self.driver.find_element(By.CSS_SELECTOR, "tr:nth-child(1) a > font").click()
+
+    self.with_retry(self.driver.find_element, [By.CSS_SELECTOR, "tr:nth-child(1) a > font"]).click()
