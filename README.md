@@ -18,7 +18,14 @@ ETL processes to crawl web to collect educational research data and put them on 
 
 ## Introduction
 
-Write what it does...
+This repository defines a Docker-based program to extract various educational
+data from public web servers by web-crawling.
+
+Right now it contains the code to extract:
+
+1. nces schools data: https://nces.ed.gov/ccd/schoolsearch/
+
+## About the ETL framework
 
 This ETL process follows kinoko.io, a template for creating a docker image
 that runs ETL based on singer.io. The ETL process is intended to be deployed
